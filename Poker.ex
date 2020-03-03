@@ -19,21 +19,6 @@ defmodule Poker do
         end
     end
 
-
-
-    def Royalflush?([1,10,11,12,13]) do
-        true
-    end
-    def Royalflush?([14,23,24,25,26]) do
-        true
-    end
-    def Royalflush?([27,36,37,38,39]) do 
-        true
-    end
-    def Royalflush?([40,49,50,51,52]) do
-        true
-    end
-
     
     def flush?(hand) 
         range1 = 1..13
@@ -49,7 +34,11 @@ defmodule Poker do
         end
         
     end
-    
+
+    def sort(hand)
+        Enum.sort(Enum.map(hand, fn num -> rem(num,13) end ))
+    end
+
     def straight?(hand) 
-    
+
 end
