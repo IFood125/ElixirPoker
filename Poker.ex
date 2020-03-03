@@ -1,4 +1,5 @@
 defmodule Poker do
+
     def deal(list) do
         
     end
@@ -34,11 +35,25 @@ defmodule Poker do
         end
         
     end
+    def sort(hand) do
+        Enum.sort(Enum.map(hand, fn num -> rem(num, 13) end))
 
-    def sort(hand)
-        Enum.sort(Enum.map(hand, fn num -> rem(num,13) end ))
-    end
+        end
+
 
     def straight?(hand) 
+        case hand do
+            [1,10,11,12,13] -> true
+            [1,2,3,4,5] -> true
+            _ -> straightCheck(hd hand, tl hand)
+    end
+        
+    def straightCheck?(first, hand)do
+        first == (hd hand) - 1 and straightCheck(hd hand, tl hand)
+    end
+
+    defp straightCheck?(first, []) do
+        true
+    end 
 
 end
