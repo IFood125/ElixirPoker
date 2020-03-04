@@ -1,59 +1,24 @@
 defmodule Poker do
 
-    def deal(list) do
-        
-    end
-    
-    
-    def pokerHandRankings do
-        
-    end
-
-
-    def Royalflush?(hand) do
-        case hand do
-            [1,10,11,12,13] -> true
-            [27,36,37,38,39] -> true
-            [14,23,24,25,26] -> true
-            [40,49,50,51,52] -> true
-            _ -> false
-        end
-    end
-
-    
-    def flush?(hand) 
-        range1 = 1..13
-        range2 = 14..26
-        range3 = 27..39
-        range4 = 40..52
-        lst1 = Enum.map(hand, fn num -> Enum.member?(range1,num) end) 
-        lst2 = Enum.map(hand, fn num -> Enum.member?(range2,num) end) 
-        lst3 = Enum.map(hand, fn num -> Enum.member?(range3,num) end) 
-        lst4 = Enum.map(hand, fn num -> Enum.member?(range4,num) end)
-        case lst1 lst do
-            
-        end
-        
-    end
     def sort(hand) do
         Enum.sort(Enum.map(hand, fn num -> rem(num, 13) end))
 
-        end
-
-
-    def straight?(hand) 
-        case hand do
-            [1,10,11,12,13] -> true
-            [1,2,3,4,5] -> true
-            _ -> straightCheck(hd hand, tl hand)
-    end
-        
-    def straightCheck?(first, hand)do
-        first == (hd hand) - 1 and straightCheck(hd hand, tl hand)
     end
 
-    defp straightCheck?(first, []) do
+    def straight?([1,2,3,4,5]) do
         true
-    end 
+    end
 
+    def straight?([1,10,11,12,13])do
+        true
+    end
+    def straight?(hand) when length(hand) > 1 do
+        (hd hand) == (hd (tl hand)) - 1 and straight?(tl hand)
+    end
+    def straight?([_]) do
+        true
+    end
+
+    def flush?(hand) do
+    end
 end
