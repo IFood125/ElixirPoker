@@ -1,6 +1,9 @@
 defmodule Poker do
 
-    def sort(hand) do
+    def sort(hand)do
+        Enum.sort(hand)
+    end
+    def remSort(hand) do
         Enum.sort(Enum.map(hand, fn num -> rem(num, 13) end))
 
     end
@@ -29,6 +32,24 @@ defmodule Poker do
         end
     end
 
+    def straightFlush?(hand)do
+        not royalFlush?(hand) and straight?(sort(hand)) and flush?(hand)
+    end
+    def fourOfAKind?(hand) do
+        length(quad(hand)) > 0
+    end
+    def fullHouse?(hand) do
+        (length(triple(hand)) > 0) and (length(double(hand)) > 0)
+    end
+    def threeOfAKind?(hand) do
+        length(triple(hand)) > 0
+    end
+    def twoPair?(hand) do
+        length(double(hand))  == 2
+    end
+    def pair?(hand) do
+        length(double(hand))  == 1
+    end
     def double(hand) do
         hand|> Enum.group_by(&(&1))|> Enum.filter(fn {_, [_,_]} -> true; _ -> false end)|> Enum.map(fn {x, _} -> x end)
     end
