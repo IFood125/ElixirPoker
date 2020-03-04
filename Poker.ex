@@ -30,7 +30,15 @@ defmodule Poker do
     end
 
     def double(hand) do
-        hand|> Enum.group_by(&(&1))|> Enum.filter(fn {_, [_,_|_]} -> true; _ -> false end)|> Enum.map(fn {x, _} -> x end)
+        hand|> Enum.group_by(&(&1))|> Enum.filter(fn {_, [_,_]} -> true; _ -> false end)|> Enum.map(fn {x, _} -> x end)
+    end
+    
+    def triple(hand) do
+        hand|> Enum.group_by(&(&1))|> Enum.filter(fn {_, [_,_,_]} -> true; _ -> false end)|> Enum.map(fn {x, _} -> x end)
+    end
+    
+    def quad(hand) do
+        hand|> Enum.group_by(&(&1))|> Enum.filter(fn {_, [_,_,_,_]} -> true; _ -> false end)|> Enum.map(fn {x, _} -> x end)
     end
     def flush?(hand) do
         range1 = 1..13
