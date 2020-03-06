@@ -4,11 +4,12 @@ defmodule Poker do
         right = Enum.sort([] ++ [Enum.at(list,1)] ++ [Enum.at(list,3)] ++ [Enum.at(list,5)] ++ [Enum.at(list,7)] ++ [Enum.at(list,9)])
         
     end
+    #Sorts the hand keeping it as integers from 1-52
     def sort(hand)do
         Enum.sort(hand)
     end
     def remSort(hand) do
-        Enum.sort(Enum.map(hand, fn num -> rem(num, 13) end))
+        sort(Enum.map(hand, fn num -> rem(num, 13) end))
 
     end
 
