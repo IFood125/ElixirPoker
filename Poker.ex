@@ -1,5 +1,9 @@
 defmodule Poker do
-
+    def deal(list) do
+        left = Enum.sort([] ++ [Enum.at(list,0)] ++ [Enum.at(list,2)] ++ [Enum.at(list,4)] ++ [Enum.at(list,6)] ++ [Enum.at(list,8)])
+        right = Enum.sort([] ++ [Enum.at(list,1)] ++ [Enum.at(list,3)] ++ [Enum.at(list,5)] ++ [Enum.at(list,7)] ++ [Enum.at(list,9)])
+        
+    end
     def sort(hand)do
         Enum.sort(hand)
     end
