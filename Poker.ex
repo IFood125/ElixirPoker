@@ -177,4 +177,59 @@ defmodule Poker do
             
         end     
     end
+    def compare(x1,y1) do
+        cond do
+            x1 == y1 -> :equal
+            x1 == 1 -> :left
+            y1 == 1 -> :right
+            x1 == 0 -> :left
+            y1 == 0 -> :right
+            x1 > y1  -> :left
+            y1 > x1-> :right
+        end    
+    end
+    #compare 2 lists of 2 elements [x1,x2] vs [y1,y2]
+    def compare2(ls1,ls2) do
+        x1 = Enum.at(ls1,0)
+        x2 = Enum.at(ls1,1)
+        y1 = Enum.at(ls2,0)
+        y2 = Enum.at(ls2,1)
+        cond do 
+            ls1 == ls2 -> :equal
+            x1 == y1 -> compare(x2,y2)
+            x2 == y2 -> compare(x1,y1)
+            x1 == y2 -> compare(x2,y1)
+            x2 == y1 -> compare(x1,y2)
+            x1 == 1 -> :left
+            y1 == 1 -> :right
+            x1 == 0 -> :left
+            y1 == 0 -> :right
+            x2 > y2  -> :left
+            y2 > x2-> :right
+        end
+    end
+    def highestFlush(hand)do
+        case hand do
+            [1|_] -> 1
+            [0|_] -> 0
+            _-> hd(hand |> Enum.reverse())
+        end
+    end
+    def compare7(red1, red2, hand1, hand2) do
+        f1 = remSort(red1)
+        f2 = remSort(red2)
+        h1 = highestFlush(f1)
+        h2 = highestFlush(f2)
+        cond do
+            h1 == h2 and length(red1) > 1 -> compare7(List.delete(f1, h1), List.delete(f2, h1),hand1, hand2)
+            h1 == h2 -> compareSuit(h1,hand1, hand2)
+            h1 == 1 -> hand1
+            h2 == 1 -> hand1
+            h1 == 0 -> hand1
+            h2 == 0 -> hand1
+            h1 > h2-> hand1
+            h2 > h1 -> hand2
+        end
+    end
+    
 end
